@@ -8,9 +8,9 @@ import 'package:wear/wear.dart';
 import 'package:http/http.dart' as http;
 
 final String apiKey = dotenv.env['WEATHER_API_KEY'] ?? '';
-const List<String> locations = ["DE74 2BN", "DA3 8NG", "LN11 9SE"];
+const List<String> queryLocations = ["DE74 2BN", "DA3 8NG", "LN11 9SE"];
 final _random = Random();
-String location = locations[0];
+String queryLocation = queryLocations[0];
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter is initialized
@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
               return Center(
                 child: FutureBuilder<WeatherData>(
                   // Fetching weather data asynchronously
-                  future: fetchWeather(location, apiKey),
+                  future: fetchWeather(queryLocation, apiKey),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       // Display weather information if data is available
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                             // Display location name
                             Text(
-                              location,
+                              snapshot.data!.location,
                               style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -108,9 +108,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             // Button to refresh data with a random location
                             IconButton(
                               onPressed: () {
-                                location =
-                                    locations[_random.nextInt(
-                                      locations.length,
+                                queryLocation =
+                                    queryLocations[_random.nextInt(
+                                      queryLocations.length,
                                     )];
                                 setState(() {});
                               },
@@ -141,11 +141,12 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class WeatherData {
+  final String location;
   final String temperature;
   final String condition;
   final String iconUrl;
 
-  WeatherData(this.temperature, this.condition, this.iconUrl);
+  WeatherData(this.location, this.temperature, this.condition, this.iconUrl);
 }
 
 Future<WeatherData> fetchWeather(String location, String apiKey) async {
@@ -157,6 +158,7 @@ Future<WeatherData> fetchWeather(String location, String apiKey) async {
   if (response.statusCode == 200) {
     final data = jsonDecode(response.body);
     return WeatherData(
+      data["location"]["name"].toString(),
       data["current"]["temp_c"].toString(),
       data["current"]["condition"]["text"].toString(),
       "https:${data["current"]["condition"]["icon"].toString()}",
