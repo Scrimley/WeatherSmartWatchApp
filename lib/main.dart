@@ -8,9 +8,9 @@ import 'package:wear/wear.dart';
 import 'package:http/http.dart' as http;
 
 final String apiKey = dotenv.env['WEATHER_API_KEY'] ?? '';
-const List<String> cities = ["Bengaluru", "Mumbai", "Goa"];
+const List<String> locations = ["DE74 2BN", "DA3 8NG", "LN11 9SE"];
 final _random = Random();
-String city = cities[0];
+String location = locations[0];
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter is initialized
@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
               return Center(
                 child: FutureBuilder<WeatherData>(
                   // Fetching weather data asynchronously
-                  future: fetchWeather(city, apiKey),
+                  future: fetchWeather(location, apiKey),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       // Display weather information if data is available
@@ -88,9 +88,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                 color: Colors.black,
                               ),
                             ),
-                            // Display city name
+                            // Display location name
                             Text(
-                              city,
+                              location,
                               style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -105,10 +105,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                 color: Colors.black,
                               ),
                             ),
-                            // Button to refresh data with a random city
+                            // Button to refresh data with a random location
                             IconButton(
                               onPressed: () {
-                                city = cities[_random.nextInt(cities.length)];
+                                location =
+                                    locations[_random.nextInt(
+                                      locations.length,
+                                    )];
                                 setState(() {});
                               },
                               icon: const Icon(
@@ -145,9 +148,11 @@ class WeatherData {
   WeatherData(this.temperature, this.condition, this.iconUrl);
 }
 
-Future<WeatherData> fetchWeather(String city, String apiKey) async {
+Future<WeatherData> fetchWeather(String location, String apiKey) async {
   final response = await http.get(
-    Uri.parse("http://api.weatherapi.com/v1/current.json?q=$city&key=$apiKey"),
+    Uri.parse(
+      "http://api.weatherapi.com/v1/current.json?q=$location&key=$apiKey",
+    ),
   );
   if (response.statusCode == 200) {
     final data = jsonDecode(response.body);
