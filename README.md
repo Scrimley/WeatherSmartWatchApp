@@ -1,3 +1,3 @@
 # weather_app
 
-A new Flutter project.
+A simple location based weather smart watch app.
