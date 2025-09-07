@@ -20,8 +20,7 @@ dev_dependencies:
   dart_pre_commit: ^5.4.7
   git_hooks: ^1.0.2
 
-assets:
-  - .env
-
 flutter:
+  assets:
+    - .env
   uses-material-design: true
