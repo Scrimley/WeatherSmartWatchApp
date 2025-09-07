@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import 'package:wear/wear.dart';
+import 'package:wear_plus/wear_plus.dart';
 import 'package:http/http.dart' as http;
 
 final String apiKey = dotenv.env['WEATHER_API_KEY'] ?? '';
