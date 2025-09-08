@@ -1,0 +1,41 @@
+name: PR Check
+
+on:
+  pull_request:
+    branches: [ 'main' ]
+
+jobs:
+  pr-check:
+    runs-on: ubuntu-latest
+    name: Check PR
+
+    steps:
+      - uses: actions/checkout@v5
+        id: checkout
+        with:
+          submodules: true
+          lfs: false
+          ref: ${{ github.ref }}
+
+      - name: Set Up Flutter
+        id: set-up-flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+      - run: flutter --version
+      - run: flutter pub get
+
+      - name: Copy .env file
+        run: cp .env.example .env
+
+      - name: Set WEATHER_API_KEY
+        run: sed 's/WEATHER_API_KEY=/WEATHER_API_KEY=${{ secrets.WEATHER_API_KEY }}/' .env
+
+      - name: Analyze Code
+        id: analyze-code
+        run: flutter analyze
+
+      - name: Build APK
+        id: android-build-apk
+        run: flutter build apk --release
