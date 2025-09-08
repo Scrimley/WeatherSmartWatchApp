@@ -7,6 +7,7 @@ on:
 jobs:
   pr-check:
     runs-on: ubuntu-latest
+    name: Check PR
 
     steps:
       - uses: actions/checkout@v5
