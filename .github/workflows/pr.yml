@@ -1,0 +1,30 @@
+name: PR Check
+
+on:
+  pull_request:
+    branches: [ 'main' ]
+
+jobs:
+  pr-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+        id: checkout
+        with:
+          submodules: true
+          lfs: false
+          ref: ${{ github.ref }}
+
+      - name: Set Up Flutter
+        id: set-up-flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+      - run: flutter --version
+      - run: flutter pub get
+
+      - name: Build APK
+        id: android-build-apk
+        run: flutter build apk --release
