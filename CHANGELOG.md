@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.2](https://github.com/Scrimley/WeatherSmartWatchApp/compare/v1.0.1...v1.0.2) (2025-09-08)
+
+
+### Bug Fixes
+
+* :green_heart: Fix CI build by disabling appBundle build step ([3ee58f4](https://github.com/Scrimley/WeatherSmartWatchApp/commit/3ee58f442a5eb49504e717fed9b8d2f59bd18302))
+* :green_heart: Fix CI build by disabling appBundle build step ([7901c01](https://github.com/Scrimley/WeatherSmartWatchApp/commit/7901c017e876b69503e6269b7ab7b9d9e08786bb))
+
 ## [1.0.1](https://github.com/Scrimley/WeatherSmartWatchApp/compare/v1.0.0...v1.0.1) (2025-09-08)
 
 
