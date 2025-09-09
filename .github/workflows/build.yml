@@ -136,11 +136,11 @@ jobs:
           merge-multiple: true
           path: build
 
-      - name: Create Release
-        id: create-release
-        uses: ncipollo/release-action@v1
+      - name: Release app
+        uses: softprops/action-gh-release@v2
         with:
-          artifacts: "build/flutter-apk/app-release.apk,build/bundle/release/app-release.aab,build/ios_build.tar.gz"
-          tag: ${{ env.APP_VERSION }}
-          token: ${{ secrets.CHAINED_ACTIONS_PAT_TOKEN }}
-          generateReleaseNotes: true
+          files: |
+            build/flutter-apk/app-release.apk
+            build/bundle/release/app-release.aab
+            build/ios_build.tar.gz
+          fail_on_unmatched_files: false
