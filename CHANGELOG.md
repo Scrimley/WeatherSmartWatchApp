@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.3](https://github.com/Scrimley/WeatherSmartWatchApp/compare/v1.0.2...v1.0.3) (2025-09-09)
+
+
+### Bug Fixes
+
+* :green_heart: Use action-gh-release instead of release action to add files to existing release ([4fb7062](https://github.com/Scrimley/WeatherSmartWatchApp/commit/4fb7062aa1d150fe78d83cf4b12bfd31c0f5364f))
+* :green_heart: Use action-gh-release instead of release action to… ([af21a24](https://github.com/Scrimley/WeatherSmartWatchApp/commit/af21a24392f6f56c8cf7639012b8aa65954fe128))
+
 ## [1.0.2](https://github.com/Scrimley/WeatherSmartWatchApp/compare/v1.0.1...v1.0.2) (2025-09-08)
 
 
