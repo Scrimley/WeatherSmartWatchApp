@@ -66,13 +66,15 @@ jobs:
       #       build/app/outputs/flutter-apk/app-release.apk
       #       build/app/outputs/bundle/release/app-release.aab
 
+      - name: List files
+        run: ls -R build
+
       - name: Upload Android app Release Artifacts
         id: upload-android-apps
         uses: actions/upload-artifact@v4
         with:
           name: Android app Release
-          path: |
-            build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
 
   # build-ios-app:
   #   runs-on: macos-latest
@@ -133,7 +135,7 @@ jobs:
         id: download-artifacts
         uses: actions/download-artifact@v5
         with:
-          merge-multiple: true
+          # merge-multiple: true
           path: build
 
       - name: List files
