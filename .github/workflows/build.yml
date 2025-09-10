@@ -71,8 +71,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Android app Release
-          path: |
-            build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
 
   # build-ios-app:
   #   runs-on: macos-latest
@@ -133,7 +132,7 @@ jobs:
         id: download-artifacts
         uses: actions/download-artifact@v5
         with:
-          merge-multiple: true
+          # merge-multiple: true
           path: build
 
       - name: List files
