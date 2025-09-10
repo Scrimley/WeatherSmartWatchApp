@@ -66,9 +66,6 @@ jobs:
       #       build/app/outputs/flutter-apk/app-release.apk
       #       build/app/outputs/bundle/release/app-release.aab
 
-      - name: List files
-        run: ls -R build
-
       - name: Upload Android app Release Artifacts
         id: upload-android-apps
         uses: actions/upload-artifact@v4
@@ -138,14 +135,12 @@ jobs:
           # merge-multiple: true
           path: build
 
-      - name: List files
-        run: ls -R build
-
       - name: Release app
         uses: softprops/action-gh-release@v2
         with:
-          files: |
-            build/flutter-apk/app-release.apk
-            build/bundle/release/app-release.aab
-            build/ios_build.tar.gz
+          files: build/app-release.apk
+          # files: |
+          #   build/flutter-apk/app-release.apk
+          #   build/bundle/release/app-release.aab
+          #   build/ios_build.tar.gz
           fail_on_unmatched_files: false
