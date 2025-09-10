@@ -66,6 +66,9 @@ jobs:
       #       build/app/outputs/flutter-apk/app-release.apk
       #       build/app/outputs/bundle/release/app-release.aab
 
+      - name: List files
+        run: ls -R build
+
       - name: Upload Android app Release Artifacts
         id: upload-android-apps
         uses: actions/upload-artifact@v4
