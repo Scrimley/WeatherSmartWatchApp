@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/Scrimley/WeatherSmartWatchApp/compare/v1.0.4...v1.0.5) (2025-09-10)
+
+
+### Bug Fixes
+
+* :green_heart: Ensure APK releases the APK file ([66c6c90](https://github.com/Scrimley/WeatherSmartWatchApp/commit/66c6c9037cb2787b620b592ef32acaa9fe3f6cb0))
+
 ## [1.0.4](https://github.com/Scrimley/WeatherSmartWatchApp/compare/v1.0.3...v1.0.4) (2025-09-10)
 
 
