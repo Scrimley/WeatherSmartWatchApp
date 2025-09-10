@@ -136,6 +136,9 @@ jobs:
           merge-multiple: true
           path: build
 
+      - name: List files
+        run: ls -R build
+
       - name: Release app
         uses: softprops/action-gh-release@v2
         with:
