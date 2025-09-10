@@ -9,7 +9,7 @@ updates:
         patterns:
           - "*"
   - package-ecosystem: gradle
-    directory: /android\app
+    directory: /android/app
     schedule:
       interval: weekly
     groups:
