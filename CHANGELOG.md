@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/Scrimley/WeatherSmartWatchApp/compare/v1.0.3...v1.0.4) (2025-09-10)
+
+
+### Bug Fixes
+
+* :memo: Update readme file to bump release version ([ac13202](https://github.com/Scrimley/WeatherSmartWatchApp/commit/ac13202eb3f709ecf2c2d1d82d4e6384449b6868))
+
 ## [1.0.3](https://github.com/Scrimley/WeatherSmartWatchApp/compare/v1.0.2...v1.0.3) (2025-09-09)
 
 
