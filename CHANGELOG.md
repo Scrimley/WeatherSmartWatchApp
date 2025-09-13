@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0](https://github.com/Scrimley/WeatherSmartWatchApp/compare/v1.0.5...v1.1.0) (2025-09-13)
+
+
+### Features
+
+* :sparkles: Use user location for weather data ([5dac743](https://github.com/Scrimley/WeatherSmartWatchApp/commit/5dac743ccae61ea0a0ea95441590a40e9be335a4))
+* :sparkles: Use user location for weather data ([91a1a19](https://github.com/Scrimley/WeatherSmartWatchApp/commit/91a1a1986fc29ea712053141f79e23b0ba1365a3))
+
 ## [1.0.5](https://github.com/Scrimley/WeatherSmartWatchApp/compare/v1.0.4...v1.0.5) (2025-09-10)
 
 
