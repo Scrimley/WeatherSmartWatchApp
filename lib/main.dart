@@ -1,21 +1,20 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:wear_plus/wear_plus.dart';
 import 'package:http/http.dart' as http;
+import 'package:geolocator/geolocator.dart';
 
 final String apiKey = dotenv.env['WEATHER_API_KEY'] ?? '';
-const List<String> queryLocations = ["DE74 2BN", "DA3 8NG", "LN11 9SE"];
-final _random = Random();
-String queryLocation = queryLocations[0];
+Position? position;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter is initialized
   try {
     await dotenv.load(fileName: ".env"); // Load environment variables
+    position = await Geolocator.getLastKnownPosition();
   } catch (e) {
     throw Exception('Error loading .env file: $e'); // Print error if any
   }
@@ -65,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
               return Center(
                 child: FutureBuilder<WeatherData>(
                   // Fetching weather data asynchronously
-                  future: fetchWeather(queryLocation, apiKey),
+                  future: fetchWeather("${position?.latitude},${position?.longitude}", apiKey),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       // Display weather information if data is available
@@ -102,21 +101,6 @@ class _MyHomePageState extends State<MyHomePage> {
                               'Temperature: ${snapshot.data!.temperature}°C',
                               style: const TextStyle(
                                 fontSize: 14,
-                                color: Colors.black,
-                              ),
-                            ),
-                            // Button to refresh data with a random location
-                            IconButton(
-                              onPressed: () {
-                                queryLocation =
-                                    queryLocations[_random.nextInt(
-                                      queryLocations.length,
-                                    )];
-                                setState(() {});
-                              },
-                              icon: const Icon(
-                                Icons.refresh,
-                                size: 32,
                                 color: Colors.black,
                               ),
                             ),
@@ -167,4 +151,30 @@ Future<WeatherData> fetchWeather(String location, String apiKey) async {
     // Throw an exception if data fetching fails
     throw Exception("Failed to fetch weather data");
   }
+}
+
+Future<Position?> determinePosition() async {
+  bool serviceEnabled;
+  LocationPermission permission;
+
+  serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) {
+    return Future.error('Location services are disabled.');
+  }
+
+  permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
+      return Future.error('Location permissions are denied');
+    }
+  }
+
+  if (permission == LocationPermission.deniedForever) {
+    return Future.error(
+      'Location permissions are permanently denied, we cannot request permissions.',
+    );
+  }
+
+  return await Geolocator.getLastKnownPosition();
 }
