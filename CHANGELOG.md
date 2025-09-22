@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.1.0](https://github.com/Scrimley/WeatherSmartWatchApp/compare/v1.0.5...v1.1.0) (2025-09-13)
+
+
+### Features
+
+* :sparkles: Use user location for weather data ([5dac743](https://github.com/Scrimley/WeatherSmartWatchApp/commit/5dac743ccae61ea0a0ea95441590a40e9be335a4))
+* :sparkles: Use user location for weather data ([91a1a19](https://github.com/Scrimley/WeatherSmartWatchApp/commit/91a1a1986fc29ea712053141f79e23b0ba1365a3))
+
+## [1.0.5](https://github.com/Scrimley/WeatherSmartWatchApp/compare/v1.0.4...v1.0.5) (2025-09-10)
+
+
+### Bug Fixes
+
+* :green_heart: Ensure APK releases the APK file ([66c6c90](https://github.com/Scrimley/WeatherSmartWatchApp/commit/66c6c9037cb2787b620b592ef32acaa9fe3f6cb0))
+
+## [1.0.4](https://github.com/Scrimley/WeatherSmartWatchApp/compare/v1.0.3...v1.0.4) (2025-09-10)
+
+
+### Bug Fixes
+
+* :memo: Update readme file to bump release version ([ac13202](https://github.com/Scrimley/WeatherSmartWatchApp/commit/ac13202eb3f709ecf2c2d1d82d4e6384449b6868))
+
 ## [1.0.3](https://github.com/Scrimley/WeatherSmartWatchApp/compare/v1.0.2...v1.0.3) (2025-09-09)
 
 
