@@ -7,9 +7,7 @@ import '../services/weather_service.dart';
 import '../widgets/weather_display.dart';
 
 class HomeScreen extends StatefulWidget {
-  final String title;
-
-  const HomeScreen({super.key, required this.title});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -19,9 +17,10 @@ class _HomeScreenState extends State<HomeScreen> {
   late Future<WeatherData> _weatherFuture;
 
   @override
-  void initState() {
+  Future<void> initState() async {
     super.initState();
-    _loadWeatherData();
+    await LocationService.initialize();
+    await _loadWeatherData();
   }
 
   Future<void> _loadWeatherData() async {
