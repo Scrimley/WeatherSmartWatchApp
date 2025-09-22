@@ -19,20 +19,19 @@ class WeatherAppWidget extends StatefulWidget {
   const WeatherAppWidget({super.key});
 
   @override
-  _WeatherAppWidgetState createState() =>
-      _WeatherAppWidgetState();
+  _WeatherAppWidgetState createState() => _WeatherAppWidgetState();
 }
 
 class _WeatherAppWidgetState extends State<WeatherAppWidget> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Weather Smart Watch',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: FutureBuilder<PermissionStatus>(
+      title: 'Weather Smart Watch',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: FutureBuilder<PermissionStatus>(
         future: LocationPermissionService.checkLocationPermission(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -50,6 +49,6 @@ class _WeatherAppWidgetState extends State<WeatherAppWidget> {
           }
         },
       ),
-      );
+    );
   }
 }
