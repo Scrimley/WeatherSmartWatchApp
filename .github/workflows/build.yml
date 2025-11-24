@@ -14,7 +14,7 @@ jobs:
     name: Build Android App
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         id: checkout
         with:
           submodules: true
@@ -59,7 +59,7 @@ jobs:
 
       # - name: Upload Android app Release Artifacts
       #   id: upload-android-apps
-      #   uses: actions/upload-artifact@v4
+      #   uses: actions/upload-artifact@v5
       #   with:
       #     name: Android app Release
       #     path: |
@@ -68,7 +68,7 @@ jobs:
 
       - name: Upload Android app Release Artifacts
         id: upload-android-apps
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: Android app Release
           path: build/app/outputs/flutter-apk/app-release.apk
@@ -78,7 +78,7 @@ jobs:
   #   name: Build IOS App
 
   #   steps:
-  #     - uses: actions/checkout@v5
+  #     - uses: actions/checkout@v6
   #       id: checkout
   #       with:
   #         submodules: true
@@ -106,7 +106,7 @@ jobs:
 
   #     - name: Upload IOS app Release Artifacts
   #       id: upload-ios-apps
-  #       uses: actions/upload-artifact@v4
+  #       uses: actions/upload-artifact@v5
   #       with:
   #         name: IOS app Release
   #         path: |
@@ -121,7 +121,7 @@ jobs:
     if: ${{ always() && ( needs.build-android-app.result == 'success' ) }}
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         id: checkout
         with:
           submodules: true
@@ -130,7 +130,7 @@ jobs:
 
       - name: Download app artifacts
         id: download-artifacts
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           # merge-multiple: true
           path: build
