@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/Scrimley/WeatherSmartWatchApp/compare/v1.1.0...v1.2.0) (2026-01-24)
+
+
+### Features
+
+* Collect user location information ([562d074](https://github.com/Scrimley/WeatherSmartWatchApp/commit/562d07462df5c2c3421bd8f093ba1fede9f712f1))
+
 ## [1.1.0](https://github.com/Scrimley/WeatherSmartWatchApp/compare/v1.0.5...v1.1.0) (2025-09-13)
 
 
