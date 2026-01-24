@@ -1,18 +1,16 @@
 import 'dart:convert';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
+import '../constants.dart';
+import '../env_config.dart';
 import '../models/weather_data.dart';
-import '../utils/constants.dart';
 
 class WeatherService {
-  static final String _apiKey = dotenv.env['WEATHER_API_KEY'] ?? '';
-
   static Future<WeatherData> fetchWeather(String location) async {
     final response = await http.get(
       Uri.parse(
-        "${AppConstants.weatherApiBaseUrl}/current.json?q=$location&key=$_apiKey",
+        "${WEATHER_API_URL}/current.json?q=$location&key=${EnvConfig.WEATHER_API_KEY}",
       ),
     );
 
