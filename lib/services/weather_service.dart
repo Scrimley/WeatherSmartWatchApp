@@ -10,7 +10,7 @@ class WeatherService {
   static Future<WeatherData> fetchWeather(String location) async {
     final response = await http.get(
       Uri.parse(
-        "${WEATHER_API_URL}/current.json?q=$location&key=${EnvConfig.WEATHER_API_KEY}",
+        "$WEATHER_API_URL/current.json?q=$location&key=${EnvConfig.WEATHER_API_KEY}",
       ),
     );
 

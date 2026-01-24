@@ -5,9 +5,14 @@ import 'package:weather_app/screens/home_screen.dart';
 
 import '../services/location_permission_service.dart';
 
-class PermissionDeniedScreen extends StatelessWidget {
+class PermissionDeniedScreen extends StatefulWidget {
   const PermissionDeniedScreen({super.key});
 
+  @override
+  State<PermissionDeniedScreen> createState() => _PermissionDeniedScreenState();
+}
+
+class _PermissionDeniedScreenState extends State<PermissionDeniedScreen> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -19,7 +24,7 @@ class PermissionDeniedScreen extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               // Retry requesting permission
-              _retryPermissionRequest(context);
+              _retryPermissionRequest();
             },
             child: Text('Retry Permission Request'),
           ),
@@ -28,8 +33,9 @@ class PermissionDeniedScreen extends StatelessWidget {
     );
   }
 
-  Future<void> _retryPermissionRequest(BuildContext context) async {
+  Future<void> _retryPermissionRequest() async {
     var status = await LocationPermissionService.checkLocationPermission();
+    if (!mounted) return;
     if (status == PermissionStatus.granted) {
       // Permission granted after retry, navigate to the main screen
       Navigator.pushReplacement(
