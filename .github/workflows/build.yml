@@ -8,6 +8,9 @@ on:
 permissions:
   contents: write
 
+env:
+  WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+
 jobs:
   build-android-app:
     runs-on: ubuntu-latest
@@ -29,12 +32,6 @@ jobs:
           cache: true
       - run: flutter --version
       - run: flutter pub get
-
-      - name: Copy .env file
-        run: cp .env.example .env
-
-      - name: Set WEATHER_API_KEY
-        run: sed 's/WEATHER_API_KEY=/WEATHER_API_KEY=${{ secrets.WEATHER_API_KEY }}/' .env
 
       # - name: Decode Keystore
       #   id: android-decode-keystore
