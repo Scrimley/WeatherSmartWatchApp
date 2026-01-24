@@ -1,23 +1,17 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:wear_plus/wear_plus.dart';
 import 'package:http/http.dart' as http;
 import 'package:geolocator/geolocator.dart';
+import 'package:weather_app/env_config.dart';
 
-final String apiKey = dotenv.env['WEATHER_API_KEY'] ?? '';
 Position? position;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter is initialized
-  try {
-    await dotenv.load(fileName: ".env"); // Load environment variables
-    position = await Geolocator.getLastKnownPosition();
-  } catch (e) {
-    throw Exception('Error loading .env file: $e'); // Print error if any
-  }
+  position = await Geolocator.getLastKnownPosition();
   runApp(const MainApp()); // Runs the app
 }
 
@@ -64,7 +58,10 @@ class _MyHomePageState extends State<MyHomePage> {
               return Center(
                 child: FutureBuilder<WeatherData>(
                   // Fetching weather data asynchronously
-                  future: fetchWeather("${position?.latitude},${position?.longitude}", apiKey),
+                  future: fetchWeather(
+                    "${position?.latitude},${position?.longitude}",
+                    EnvConfig.WEATHER_API_KEY,
+                  ),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       // Display weather information if data is available
