@@ -56,7 +56,7 @@ jobs:
 
       # - name: Upload Android app Release Artifacts
       #   id: upload-android-apps
-      #   uses: actions/upload-artifact@v5
+      #   uses: actions/upload-artifact@v6
       #   with:
       #     name: Android app Release
       #     path: |
@@ -65,7 +65,7 @@ jobs:
 
       - name: Upload Android app Release Artifacts
         id: upload-android-apps
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: Android app Release
           path: build/app/outputs/flutter-apk/app-release.apk
@@ -103,7 +103,7 @@ jobs:
 
   #     - name: Upload IOS app Release Artifacts
   #       id: upload-ios-apps
-  #       uses: actions/upload-artifact@v5
+  #       uses: actions/upload-artifact@v6
   #       with:
   #         name: IOS app Release
   #         path: |
@@ -127,7 +127,7 @@ jobs:
 
       - name: Download app artifacts
         id: download-artifacts
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           # merge-multiple: true
           path: build
